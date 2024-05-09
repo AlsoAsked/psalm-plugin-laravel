@@ -19,11 +19,6 @@
       <code>null</code>
     </TypeDoesNotContainType>
   </file>
-  <file src="src/Handlers/Auth/GuardHandler.php">
-    <DeprecatedProperty>
-      <code><![CDATA[$previous_call->name->parts]]></code>
-    </DeprecatedProperty>
-  </file>
   <file src="src/Handlers/Eloquent/ModelPropertyAccessorHandler.php">
     <ArgumentTypeCoercion>
       <code><![CDATA[$event->getFqClasslikeName()]]></code>
@@ -35,11 +30,6 @@
       <code>array</code>
       <code>array</code>
     </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Handlers/Eloquent/Schema/SchemaAggregator.php">
-    <DeprecatedProperty>
-      <code><![CDATA[$first_argument_of_nullable->value->name->parts]]></code>
-    </DeprecatedProperty>
   </file>
   <file src="src/Handlers/Helpers/PathHandler.php">
     <InternalMethod>
