@@ -73,9 +73,13 @@ class Plugin implements PluginEntryPointInterface
     /** @return list<string> */
     protected function getTaintAnalysisStubs(): array
     {
-        return array_merge(
-            glob(dirname(__DIR__) . '/stubs/TaintAnalysis/Http/*.stubphp'),
-        );
+        $paths = glob(dirname(__DIR__) . '/stubs/TaintAnalysis/Http/*.stubphp');
+
+        if ($paths === false) {
+            return [];
+        }
+
+        return array_merge($paths);
     }
 
     /** @return list<string> */
@@ -83,10 +87,22 @@ class Plugin implements PluginEntryPointInterface
     {
         [$majorVersion] = explode('.', $version);
 
-        return array_merge(
-            glob(dirname(__DIR__) . '/stubs/' . $majorVersion . '/*.stubphp'),
-            glob(dirname(__DIR__) . '/stubs/' . $majorVersion . '/**/*.stubphp'),
-        );
+        $rootPaths = glob(dirname(__DIR__) . '/stubs/' . $majorVersion . '/*.stubphp');
+        $childPaths = glob(dirname(__DIR__) . '/stubs/' . $majorVersion . '/**/*.stubphp');
+
+        if ($rootPaths === false && $childPaths === false) {
+            return [];
+        }
+
+        if ($rootPaths === false) {
+            return array_merge($childPaths);
+        }
+
+        if ($childPaths === false) {
+            return array_merge($rootPaths);
+        }
+
+        return array_merge($rootPaths, $childPaths);
     }
 
     private function registerStubs(RegistrationInterface $registration): void

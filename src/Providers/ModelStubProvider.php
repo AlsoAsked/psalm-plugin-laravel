@@ -32,9 +32,12 @@ final class ModelStubProvider implements GeneratesStubs
         $codebase = $project_analyzer->getCodebase();
 
         $schema_aggregator = new SchemaAggregator();
+        $migration_paths = glob($migrations_directory . '*.php');
 
-        foreach (glob($migrations_directory . '*.php') as $file) {
-            $schema_aggregator->addStatements($codebase->getStatementsForFile($file));
+        if ($migration_paths !== false) {
+            foreach ($migration_paths as $file) {
+                $schema_aggregator->addStatements($codebase->getStatementsForFile($file));
+            }
         }
 
         $fake_filesystem = new FakeFilesystem();

@@ -9,10 +9,6 @@
     <MixedArgument>
       <code><![CDATA[$this->config->get('auth.guards')]]></code>
     </MixedArgument>
-    <MixedInferredReturnType>
-      <code>?string</code>
-      <code><![CDATA[class-string<\Illuminate\Contracts\Auth\Authenticatable>|null]]></code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[$this->config->get("auth.providers.{$provider}.model", null)]]></code>
       <code><![CDATA[$this->config->get('auth.defaults.guard')]]></code>
@@ -59,5 +55,10 @@
     <InternalMethod>
       <code>new TLiteralString($concrete)</code>
     </InternalMethod>
+  </file>
+  <file src="src/Fakes/FakeFilesystem.php">
+    <MixedReturnStatement>
+      <code>parent::put($destination, $contents, $lock)</code>
+    </MixedReturnStatement>
   </file>
 </files>
